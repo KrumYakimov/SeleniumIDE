@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PATH = "/root/.dotnet:$PATH"
+        PATH = "/usr/bin:$PATH"
     }
 
     stages {
