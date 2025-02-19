@@ -22,9 +22,11 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
-        options = new ChromeOptions();
-        options.AddArgument("headless");
-        driver = new ChromeDriver(options);
+        var options = new ChromeOptions();
+        options.AddArgument("headless"); // Run in headless mode
+        options.BinaryLocation = "/usr/bin/chromium"; // Use Chromium binary
+
+        driver = new ChromeDriver("/usr/bin/", options);
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<string, object>();
     }
