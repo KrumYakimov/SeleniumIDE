@@ -20,19 +20,19 @@ pipeline {
 
         stage('Restore Dependencies') {
             steps {
-                sh 'dotnet restore HouseRentingSystem.sln'
+                sh 'dotnet restore'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'dotnet build HouseRentingSystem.sln --no-restore'
+                sh 'dotnet build --no-restore'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'dotnet test HouseRentingSystem.sln --no-build --verbosity normal'
+                sh 'dotnet test --no-build --verbosity normal'
             }
         }
     }
