@@ -22,14 +22,19 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
-        var options = new ChromeOptions();
-        options.AddArgument("headless"); // Run in headless mode
-        options.BinaryLocation = "/usr/bin/chromium"; // Use Chromium binary
-
-        driver = new ChromeDriver("/usr/bin/", options);
+        options = new ChromeOptions();
+        options.AddArgument("headless");
+        options.AddArgument("--no-sandbox");
+        options.AddArgument("--disable-dev-shm-usage");
+        options.AddArgument("--disable-gpu");
+        options.AddArgument("--user-data-dir=/tmp/chrome-user-data"); // Ensures a unique directory
+        options.AddArgument("--remote-debugging-port=9222"); // Avoids port conflicts
+    
+        driver = new ChromeDriver(options);
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<string, object>();
     }
+
 
     [TearDown]
     protected void TearDown()
